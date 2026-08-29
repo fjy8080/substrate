@@ -1,0 +1,23 @@
+providers:
+  webSearchOrder:
+    []
+setupVersion: 2
+modelRoles:
+  default: zai/glm-5.3-flash:max
+  smol: openai-codex/gpt-5.6-luna:xhigh
+  amd_scout: zai/glm-5.3-flash:max
+  amd_explorer: zai/glm-5.3-flash:max
+  amd_utility: zai/glm-5.3-flash:max
+  amd_knowledge: zai/glm-5.3-flash:max
+task:
+  isolation:
+    mode: auto
+  maxConcurrency: 4
+  enableLsp: true
+secrets:
+  enabled: true
+bash:
+  patterns:
+    []
+tools:
+  approvalMode: yolo

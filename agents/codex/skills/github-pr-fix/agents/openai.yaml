@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub PR Fix"
+  short_description: "按分级和PR边界回归修复，三轮后只处理P0/P1"
+  default_prompt: "Use $github-pr-fix to verify active PR #123 feedback, enforce the PR scope and severity convergence gate, synchronize exact-HEAD body metadata after pushing, and wait for my approval before replying."
+policy:
+  allow_implicit_invocation: false

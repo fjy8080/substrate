@@ -1,0 +1,12 @@
+# Put personal defaults in ~/.codex/config.toml.
+# Copy only safe, project-scoped preferences to <project>/.codex/config.toml.
+# Do NOT put OpenAI credentials, provider base URLs, telemetry keys or account data here.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3
+
+# The project AGENTS.md should carry repository conventions and release gates.

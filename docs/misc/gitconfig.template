@@ -1,0 +1,14 @@
+# ~/.gitconfig 模板（GitHub 凭据走 gh CLI）
+# 原机器曾用绝对路径指向项目内 gh 二进制副本作为 credential helper；
+# gh 在 PATH 中时可用下面的 !gh 写法，更可移植。
+
+[user]
+	name = HP26666
+	email = fjy20110@qq.com
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential

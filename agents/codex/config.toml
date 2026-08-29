@@ -1,0 +1,162 @@
+# ============================================================
+# Codex CLI 全局配置（substrate 脱敏模板）
+# 恢复：复制到 ~/.codex/config.toml，替换 <...> 占位符（清单见 docs/secrets-checklist.md）
+#
+# 相对原机器 (~/.codex/config.toml) 的调整：
+#   - mcp_servers 中的 Bearer token / Z_AI_API_KEY → 占位符
+#   - 删除 13 个 Windows 路径的 [projects.'C:\...'] trust 残留（Linux 无效）
+#   - 删除 [hooks.state] 信任哈希（新机器首次运行会对 hooks.json 重新弹信任确认，属正常）
+#   - 删除 mcp_servers.node_repl 与 openai-bundled / openai-primary-runtime 的
+#     marketplace / plugin 条目（由 Codex 桌面端自动管理、自动重建）
+#   - auth.json 不入库：新机器需重新登录 Codex
+# ============================================================
+
+model = "gpt-5.6-sol"
+model_reasoning_effort = "low"
+service_tier = "ultrafast"
+approvals_reviewer = "user"
+
+[model_providers.openai_http]
+name = "OpenAI HTTP only"
+wire_api = "responses"
+supports_websockets = false
+
+# 仅 Windows 生效；Linux/macOS 机器可忽略
+[windows]
+sandbox = "unelevated"
+model_provider = "openai_http"
+
+# 受信任的项目目录：取消注释、把 ~ 替换为新机器实际绝对路径后启用（不配置则首次打开项目时交互确认）
+# [projects."~/Desktop/project"]
+# trust_level = "trusted"
+
+# [projects."~/Desktop/project/HXCQ-Sport"]
+# trust_level = "trusted"
+
+# [projects."~"]
+# trust_level = "trusted"
+
+# [projects."~/Desktop/project/shenxue-ai"]
+# trust_level = "trusted"
+
+# [projects."~/Desktop/project/shenxue-ai-agent-workspaces/agent-1"]
+# trust_level = "trusted"
+
+# [projects."~/Desktop/project/shenxue-ai-agent-workspaces/agent-2"]
+# trust_level = "trusted"
+
+# [projects."~/Desktop/project/jiayi_work"]
+# trust_level = "trusted"
+
+[marketplaces.claude-plugins-official]
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[plugins."clangd-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."code-review@claude-plugins-official"]
+enabled = true
+
+[plugins."commit-commands@claude-plugins-official"]
+enabled = true
+
+[plugins."context7@claude-plugins-official"]
+enabled = true
+
+[plugins."feature-dev@claude-plugins-official"]
+enabled = true
+
+[plugins."frontend-design@claude-plugins-official"]
+enabled = true
+
+[plugins."jdtls-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."pyright-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."security-guidance@claude-plugins-official"]
+enabled = true
+
+[plugins."typescript-lsp@claude-plugins-official"]
+enabled = true
+
+[desktop]
+followUpQueueMode = "queue"
+conversationDetailMode = "STEPS_PROSE"
+enabled-reasoning-efforts = [
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "ultra",
+    "max",
+]
+external-agent-import-sync-enabled = true
+preventSleepWhileRunning = true
+show-context-window-usage = true
+
+[features]
+js_repl = false
+memories = true
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "7ed52dae165c3bc22b6d24f282e2c1fbc87f6949fbbe037767a7418d8f517f01,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+ANTHROPIC_AUTH_TOKEN = "PROXY_MANAGED"
+ANTHROPIC_BASE_URL = "http://127.0.0.1:15721"
+ANTHROPIC_DEFAULT_FABLE_MODEL = "claude-fable-5[1M]"
+ANTHROPIC_DEFAULT_FABLE_MODEL_NAME = "Fable"
+ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5"
+ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME = "Haiku"
+ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-8[1M]"
+ANTHROPIC_DEFAULT_OPUS_MODEL_NAME = "Opus"
+ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-6"
+ANTHROPIC_DEFAULT_SONNET_MODEL_NAME = "Sonnet"
+API_TIMEOUT_MS = "3000000"
+CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
+CLAUDE_CODE_EFFORT_LEVEL = "max"
+CLAUDE_CODE_USE_POWERSHELL_TOOL = "1"
+ENABLE_TOOL_SEARCH = "true"
+CLAUDE_CODE_SUBAGENT_MODEL = "glm-5.3-flash[1M]"
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 2
+
+# ---------- MCP 服务器（z.ai 系，凭据占位） ----------
+
+[mcp_servers.web-reader]
+url = "https://api.z.ai/api/mcp/web_reader/mcp"
+
+[mcp_servers.web-reader.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[mcp_servers.web-search-prime]
+url = "https://api.z.ai/api/mcp/web_search_prime/mcp"
+
+[mcp_servers.web-search-prime.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[mcp_servers.zai-mcp-server]
+command = "npx"
+args = [
+    "-y",
+    "@z_ai/mcp-server",
+]
+
+[mcp_servers.zai-mcp-server.env]
+Z_AI_MODE = "ZHIPU"
+Z_AI_API_KEY = "<ZAI_API_KEY>"
+
+[mcp_servers.zread]
+url = "https://api.z.ai/api/mcp/zread/mcp"
+
+[mcp_servers.zread.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[memories]
+generate_memories = true
+use_memories = true

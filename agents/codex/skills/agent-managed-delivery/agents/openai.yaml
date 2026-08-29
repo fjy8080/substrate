@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Managed Delivery"
+  short_description: "锁定WBS范围，以P0/P1收敛和exact-HEAD门禁完成PR交付"
+  default_prompt: "Use $agent-managed-delivery to deliver the selected WBS task with locked scope, severity-aware convergent review, and exact-HEAD PR metadata, CI, and review gates."
+policy:
+  allow_implicit_invocation: false

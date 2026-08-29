@@ -1,0 +1,8 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "//": "Minimal project-safe sample. Configure providers through OpenCode's own login flow; do not put API keys here.",
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  }
+}
