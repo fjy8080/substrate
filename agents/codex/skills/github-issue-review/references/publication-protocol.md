@@ -71,7 +71,7 @@ When the user approves publication on multiple Issues:
   non-actionable until the CHG/ADR decision is recorded.
 - No follow-up comment on an adjacent Issue the user did not approve.
 - No assignment, milestone, or label change beyond the explicitly approved set.
-- No memory or `docs/知识库/` mutation as a side effect of publication. If triage surfaces a durable
+- No memory or authoritative-docs mutation as a side effect of publication. If triage surfaces a durable
   project fact, recommend a separate documentation task; do not edit authoritative sources silently.
 - No override of another Issue's owner or another actor's open PR.
 

@@ -1,6 +1,6 @@
 ---
 name: github-pr-fix
-description: Verify and fix active actionable feedback on an existing GitHub pull request using a complete identity/lifecycle ledger, a locked PR task boundary, and P0/P1-only convergence after three review/fix rounds, then report before publishing replies. Use only when the user explicitly invokes `$github-pr-fix` or sends a fix command such as `修复#68` / `修复 #68`. Keep this separate from PR review and Agent Managed Delivery workflows.
+description: Verify and fix active actionable feedback on an existing GitHub pull request using a complete identity/lifecycle ledger, a locked PR task boundary, and P0/P1-only convergence after three review/fix rounds, then report before publishing replies. Use only when the user explicitly invokes `$github-pr-fix` or sends a fix command such as `修复#123` / `修复 #123`. Keep this separate from PR review and Agent Managed Delivery workflows.
 ---
 
 # GitHub PR Fix

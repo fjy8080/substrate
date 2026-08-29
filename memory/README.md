@@ -24,7 +24,6 @@
 
 ## codex/ —— Codex 记忆
 
-- `MEMORY.md`：任务组示例（含 Codex 记忆文件的标准结构：scope / rollout 引用 / keywords / preferences / knowledge / failures）
 - `memory_summary.md`：**精华** —— 10 条用户工作偏好（原话级：「直接问，不要自己猜」「先修 CI，再审查」「不要合并」等）+ 7 条通用交付技巧（exact-HEAD 证据链、未验证 gate 独立呈报、Flyway 全树扫描断言、批量 API 串行化等）
 - `extensions/ad_hoc/instructions.md`：ad-hoc 记忆扩展的机制说明
 

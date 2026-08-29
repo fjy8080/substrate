@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE 'db/migration/.*\\.sql$'; then jq -nc '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"⚠ 刚修改了 Flyway 迁移脚本。本项目迁移打进 jar、未挂载进容器，restart backend 无效，必须 docker-compose build backend && docker-compose up -d backend 才生效（见 skill db-migration-workflow）。\"}}'; fi",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE 'db/migration/.*\\.sql$'; then jq -nc '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"⚠ 刚修改了 Flyway 迁移脚本。请确认本项目迁移的生效方式（打进 jar/镜像的迁移，仅重启容器无效，需重建镜像后再启动）。\"}}'; fi",
             "timeout": 5000
           }
         ]

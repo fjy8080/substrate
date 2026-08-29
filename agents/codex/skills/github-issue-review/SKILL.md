@@ -50,9 +50,9 @@ For every requested Issue:
 3. Check all open PRs (exact heads/bases, related Issue references), active branches/worktrees and
    their dirty state, and other work touching the same files or behavior. An open PR with no Issue
    link may still conflict or already fix this Issue by file or behavior — search linkage and diff.
-4. Cross-check the Issue's claim against authoritative contracts: API contract (`docs/03-接口契约/`),
-   business rules (`docs/知识库/business-rules.md`, `docs/05-业务规则/`), ADR (`docs/adr/`),
-   milestones/Flyway (`docs/知识库/milestones.md`), and permission model. A claim that contradicts
+4. Cross-check the Issue's claim against the repository's authoritative contracts: API contract,
+   business rules, ADR, milestones/migration ledger, and permission model (locate them by that
+   repository's actual doc layout). A claim that contradicts
    an authoritative source is not a defect; record the contract fingerprint.
 5. Across all requested Issues, detect duplicates, overlaps, and dependencies. Two Issues are
    `DUPLICATE` only when their confirmed root cause and owned scope are the same; partial overlap is

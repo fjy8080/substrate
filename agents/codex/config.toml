@@ -25,23 +25,13 @@ model_provider = "openai_http"
 # [projects."~/Desktop/project"]
 # trust_level = "trusted"
 
-# [projects."~/Desktop/project/HXCQ-Sport"]
-# trust_level = "trusted"
 
 # [projects."~"]
 # trust_level = "trusted"
 
-# [projects."~/Desktop/project/shenxue-ai"]
-# trust_level = "trusted"
 
-# [projects."~/Desktop/project/shenxue-ai-agent-workspaces/agent-1"]
-# trust_level = "trusted"
 
-# [projects."~/Desktop/project/shenxue-ai-agent-workspaces/agent-2"]
-# trust_level = "trusted"
 
-# [projects."~/Desktop/project/jiayi_work"]
-# trust_level = "trusted"
 
 [marketplaces.claude-plugins-official]
 source_type = "git"
@@ -100,7 +90,6 @@ memories = true
 inherit = "core"
 
 [shell_environment_policy.set]
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "7ed52dae165c3bc22b6d24f282e2c1fbc87f6949fbbe037767a7418d8f517f01,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
 ANTHROPIC_AUTH_TOKEN = "PROXY_MANAGED"
 ANTHROPIC_BASE_URL = "http://127.0.0.1:15721"
 ANTHROPIC_DEFAULT_FABLE_MODEL = "claude-fable-5[1M]"

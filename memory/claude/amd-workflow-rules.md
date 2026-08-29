@@ -5,7 +5,6 @@ metadata:
   node_type: memory
   type: project
   modified: 2026-08-18T14:36:26.668Z
-  originSessionId: 421d781b-2bb4-4b65-8f0c-576c4ef41705
 ---
 
 # AMD 工作流核心规则（默认工作流）
@@ -65,18 +64,7 @@ CANDIDATE → CLAIMED → EXPLORING → DEVELOPING → SELF_TESTING → IMPLEMEN
 | 模式 | PR 创建 | 合并 | 范围变更 |
 |------|---------|------|----------|
 | **SUPERVISED** | 需用户批准 | 需用户批准 | 需用户批准 |
-| **DELEGATED_BATCH** | 预授权自动 | 预授权自动 | 默认仍需用户批准；本批次用户于 2026-08-19 追加：后续 SCOPE_BLOCKED 直接选 Main 推荐项，不再逐次询问 |
-
-## 七、任务串行队列（参考，每步开工前必须 live 核对）
-
-| # | 任务 | 状态 |
-|---|------|------|
-| 1 | WBS-06-BE.2a（Admin 鉴权） | READY（下一串行） |
-| 2 | WBS-06-API.2a | 待 BE.2a |
-| 3 | WBS-06-BE.1b | 条件（WBS_AMBIGUITY） |
-| 4 | WBS-06-API.1b | 条件 |
-
-**注意**：队列信息来自 memory/01-current-status.md，实际状态必须每步开工前通过 GitHub live 核对。
+| **DELEGATED_BATCH** | 预授权自动 | 预授权自动 | 需用户批准 |
 
 ## 八、参考文件
 
@@ -85,4 +73,3 @@ CANDIDATE → CLAIMED → EXPLORING → DEVELOPING → SELF_TESTING → IMPLEMEN
 - Subagent 调度：`~/.claude/skills/agent-managed-delivery/references/subagent-scheduling.md`
 - 项目适配：`~/.claude/skills/agent-managed-delivery/references/project-adaptation.md`
 - 实操约定（workaround）：见 [[amd-cc-workarounds]]
-- 当前状态：`memory/01-current-status.md`

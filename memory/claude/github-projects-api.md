@@ -7,9 +7,9 @@ metadata:
   modified: 2026-08-19T09:16:00.000Z
 ---
 
-# GitHub Projects API（MEM-DEC-013）
+# GitHub Projects API 硬规则
 
-权威全文在项目共享记忆 **`memory/09-github-projects-api.md`**，不要在本目录维护副本。
+权威全文维护在各项目自己的共享 memory 中，不要在 agent memory 维护副本。
 
 开工即生效：
 

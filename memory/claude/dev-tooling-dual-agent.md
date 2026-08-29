@@ -4,7 +4,6 @@ description: 用户同时用 codex 和 claude code 开发本项目，两边记�
 metadata: 
   node_type: memory
   type: feedback
-  originSessionId: 943cecdc-2688-4c81-96c2-f7cb6cce66fb
   modified: 2026-08-03T16:06:16.996Z
 ---
 
@@ -16,4 +15,4 @@ metadata:
 - 项目工作规范和上下文只认 `AGENTS.md` 与 `memory/`，见 [[shared-memory-location]]。
 - **不要**在 Claude Code 的 memory 目录里复制项目 `memory/` 的具体交付状态（PR 号、HEAD、Gate 结论、批次进度等），那些只由项目 `memory/` 维护。
 - Claude Code 这侧只放：指向项目记忆的指针、Claude Code 特定视角补充、跨工具的稳定约定。
-- 环境为 Linux/bash；个人 Skill（`agent-managed-delivery`、`github-pr-review`、`github-pr-fix`）是 Codex 本机配置，需显式触发，不进入项目分支——细节见项目 `memory/07`。
+- 环境为 Linux/bash；个人 Skill（`agent-managed-delivery`、`github-pr-review`、`github-pr-fix`）是 Codex 本机配置，需显式触发，不进入项目分支。

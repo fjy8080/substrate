@@ -1,5 +1,5 @@
 # ~/.gitconfig 模板（GitHub 凭据走 gh CLI）
-# 原机器曾用绝对路径指向项目内 gh 二进制副本作为 credential helper；
+# 若 gh 不在 PATH，也可改用 gh 二进制的绝对路径；
 # gh 在 PATH 中时可用下面的 !gh 写法，更可移植。
 
 [user]

@@ -64,7 +64,7 @@ backup_and_cp_dir() { # 备份同名子项后合并目录；备份集中放 ~/.c
   act "合并目录 $src/ → $dst/" cp -a "$src/." "$dst/"
 }
 
-echo "== substrate 恢复脚本（repo: $REPO）=="
+echo "== substrate 安装脚本（repo: $REPO）=="
 
 # ---------- 1. Claude Code：skills + hook 脚本 ----------
 backup_and_cp_dir "$REPO/agents/claude-code/skills" "$HOME/.claude/skills"

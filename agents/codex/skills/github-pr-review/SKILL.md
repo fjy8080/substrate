@@ -1,6 +1,6 @@
 ---
 name: github-pr-review
-description: Perform a read-only, exact-HEAD GitHub pull-request review with PR-creator identity, contributor independence, task-boundary classification, and P0/P1-only convergence after three review/fix rounds, then publish only after user confirmation. Use only when the user explicitly invokes `$github-pr-review` or sends an explicit PR-review command such as `审查#68` / `审查 #68`. Keep this separate from development, repair, and delivery workflows.
+description: Perform a read-only, exact-HEAD GitHub pull-request review with PR-creator identity, contributor independence, task-boundary classification, and P0/P1-only convergence after three review/fix rounds, then publish only after user confirmation. Use only when the user explicitly invokes `$github-pr-review` or sends an explicit PR-review command such as `审查#123` / `审查 #123`. Keep this separate from development, repair, and delivery workflows.
 ---
 
 # GitHub PR Review

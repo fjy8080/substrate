@@ -4,7 +4,6 @@ description: "Git branching model, commit conventions, and branch management pra
 metadata: 
   node_type: memory
   type: project
-  originSessionId: 421d781b-2bb4-4b65-8f0c-576c4ef41705
   modified: 2026-08-18T14:36:04.048Z
 ---
 

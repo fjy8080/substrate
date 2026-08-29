@@ -118,7 +118,7 @@ fallback
 quota
 ```
 
-本次实际遇到的两个典型问题：
+两个常见典型问题：
 
 1. z.ai MCP 仍使用旧 `open.bigmodel.cn` 地址；
 2. MCP 配置里的旧 Authorization 已失效，但 OMP 凭据库中的 z.ai 凭据仍有效。
@@ -144,7 +144,7 @@ chmod 600 ~/.config/opencode/opencode.json.before-omp-optimization
 
 ## 4. 全局 OMP 基线
 
-当前全局策略是：
+推荐全局基线：
 
 - 默认/全局：Luna max；
 - smol：Luna xhigh；
@@ -590,7 +590,7 @@ JSON 不会展开环境变量。创建文件时把 `__TS_SDK__` 替换为 `$(npm
 }
 ```
 
-这里把 monorepo 根 `.git` 作为 root marker，因为真实 `pom.xml`、`package.json` 可能位于 `backend/`、`admin-web/`、`uni-app/` 子目录，OMP 的启动检测是 cwd 根级检查，不递归寻找 marker。
+这里把 monorepo 根 `.git` 作为 root marker，因为真实 `pom.xml`、`package.json` 可能位于 `backend/`、`web/` 等子目录，OMP 的启动检测是 cwd 根级检查，不递归寻找 marker。
 
 ### 8.4 重载与验证
 
