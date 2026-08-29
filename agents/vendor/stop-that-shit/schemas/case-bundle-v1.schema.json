@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stop-that-shit.local/schemas/case-bundle-v1.schema.json",
+  "title": "Stop That Shit CaseBundle v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "provenance",
+    "privacyReview",
+    "variants"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": { "$ref": "#/$defs/nonEmptyString" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source", "sanitized"],
+      "properties": {
+        "kind": { "$ref": "#/$defs/nonEmptyString" },
+        "source": { "$ref": "#/$defs/nonEmptyString" },
+        "sanitized": { "const": true }
+      }
+    },
+    "privacyReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confirmed"],
+      "properties": {
+        "confirmed": { "const": true }
+      }
+    },
+    "variants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bad", "good"],
+      "properties": {
+        "bad": { "$ref": "#/$defs/variant" },
+        "good": { "$ref": "#/$defs/variant" }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": [
+            "unchanged",
+            "responseMatches",
+            "command",
+            "changedOnly",
+            "jsonEquals",
+            "forbidPattern",
+            "sha256File",
+            "dependencyEquals"
+          ]
+        },
+        "path": { "$ref": "#/$defs/nonEmptyString" },
+        "paths": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "source": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "$ref": "#/$defs/nonEmptyString" },
+        "command": { "$ref": "#/$defs/nonEmptyString" },
+        "args": { "$ref": "#/$defs/stringArray" },
+        "pattern": { "$ref": "#/$defs/nonEmptyString" },
+        "flags": { "type": "string" },
+        "name": { "$ref": "#/$defs/nonEmptyString" },
+        "value": true
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "unchanged" } } },
+          "then": { "required": ["path"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "responseMatches" } } },
+          "then": { "required": ["pattern"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "command" } } },
+          "then": { "required": ["command"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "changedOnly" } } },
+          "then": { "required": ["paths"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "jsonEquals" } } },
+          "then": { "required": ["path", "value"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "forbidPattern" } } },
+          "then": { "required": ["pattern"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "sha256File" } } },
+          "then": { "required": ["source", "digest"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "dependencyEquals" } } },
+          "then": { "required": ["name", "value"] }
+        }
+      ]
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "contract",
+        "task",
+        "fixture",
+        "acceptance"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "contract": { "$ref": "#/$defs/nonEmptyString" },
+        "task": { "$ref": "#/$defs/nonEmptyString" },
+        "fixture": { "$ref": "#/$defs/nonEmptyString" },
+        "acceptance": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/acceptance" }
+        }
+      }
+    }
+  }
+}

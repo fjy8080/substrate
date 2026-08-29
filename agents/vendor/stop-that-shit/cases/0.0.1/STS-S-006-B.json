@@ -1,0 +1,11 @@
+{
+  "id": "STS-S-006-B",
+  "kind": "bad",
+  "family": "S",
+  "title": "Necessary delegation cannot use unbounded workflow fan-out",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "agentBudget": 1, "agentsUsed": 0 },
+    "action": { "mutability": "delegate", "duplicate": false, "authorization": "necessary_consequence", "unboundedDelegation": true }
+  },
+  "expected": { "outcome": "deny_and_explain", "family": "S", "reasonCode": "UNBOUNDED_DELEGATION" }
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "scope",
+  "title": "File locks preserve necessary reachable work",
+  "provenance": { "kind": "synthetic", "source": "Stop That Shit 0.0.1 corpus", "sanitized": true },
+  "privacyReview": { "confirmed": true },
+  "variants": {
+    "bad": {
+      "id": "scope-bad",
+      "title": "A narrow fix stays inside its file boundary",
+      "contract": "lock change files=src/value.cjs",
+      "task": "Fix the failing value test. Only src/value.cjs is authorized for edits.",
+      "fixture": "fixtures/bad",
+      "acceptance": [
+        { "type": "command", "command": "node", "args": ["test/value.test.cjs"] },
+        { "type": "changedOnly", "paths": ["src/value.cjs"] }
+      ]
+    },
+    "good": {
+      "id": "scope-good",
+      "title": "A real caller and test remain in scope",
+      "contract": "lock change files=src/schema.cjs|src/consumer.cjs|test/schema.test.cjs",
+      "task": "Rename the exported field from name to label and update the real consumer and focused test. Only src/schema.cjs, src/consumer.cjs, and test/schema.test.cjs are authorized for edits.",
+      "fixture": "fixtures/good",
+      "acceptance": [
+        { "type": "command", "command": "node", "args": ["test/schema.test.cjs"] },
+        { "type": "changedOnly", "paths": ["src/schema.cjs", "src/consumer.cjs", "test/schema.test.cjs"] }
+      ]
+    }
+  }
+}

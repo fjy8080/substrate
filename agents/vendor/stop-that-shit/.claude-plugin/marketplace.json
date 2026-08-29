@@ -1,0 +1,16 @@
+{
+  "name": "stop-that-shit",
+  "owner": {
+    "name": "Stop That Shit contributors"
+  },
+  "metadata": {
+    "description": "Local marketplace for Stop That Shit: keep agents on task with scope, dependency, hash, and delegation guardrails."
+  },
+  "plugins": [
+    {
+      "name": "stop-that-shit",
+      "source": "./",
+      "description": "Keep Claude Code on task with local-first mode, scope, dependency, hash, and delegation guardrails."
+    }
+  ]
+}

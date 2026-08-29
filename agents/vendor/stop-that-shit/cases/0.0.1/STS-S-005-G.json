@@ -1,0 +1,11 @@
+{
+  "id": "STS-S-005-G",
+  "kind": "good",
+  "family": "S",
+  "title": "Explicitly requested parser dependency",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "dependencyPolicy": "allow" },
+    "action": { "mutability": "write", "duplicate": false, "dependencyIntent": true }
+  },
+  "expected": { "outcome": "allow", "family": null, "reasonCode": "WITHIN_CONTRACT" }
+}

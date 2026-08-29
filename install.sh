@@ -3,7 +3,7 @@
 # substrate —— 多 agent 开发环境恢复脚本
 #
 # 用法：
-#   bash install.sh                 # 只装无损项：skills / hook 脚本 / OMP 配置
+#   bash install.sh                 # 只装无损项：skills / 全局必读指令 / hook 脚本 / OMP 配置
 #   bash install.sh --merge-mcp     # 额外把 MCP 模板合并进 ~/.claude.json（需 jq，先填占位符）
 #   bash install.sh --with-memory   # 额外部署 codex 记忆到 ~/.codex/memories/
 #   bash install.sh --with-config   # 额外覆盖 ~/.claude/settings.json 与 ~/.codex/config.toml
@@ -46,15 +46,17 @@ backup_and_cp_file() { # 备份已存在的目标文件后覆盖
   act "安装 $src → $dst" cp "$src" "$dst"
 }
 
-backup_and_cp_dir() { # 备份同名子项后合并目录
+backup_and_cp_dir() { # 备份同名子项后合并目录；备份集中放 ~/.cache/substrate-backups/，避免 .bak 后缀目录被 skill 扫描器误识别
   local src="$1" dst="$2"
+  local bdir="$HOME/.cache/substrate-backups/$(stamp)/$(printf '%s' "$dst" | tr '/ ' '__')"
   if [ -d "$dst" ] && [ "$DRY" = 0 ]; then
     for item in "$src"/* "$src"/.[!.]*; do
       [ -e "$item" ] || continue
       local name="${item##*/}"
       if [ -e "$dst/$name" ]; then
-        cp -a "$dst/$name" "$dst/$name.bak-substrate-$(stamp)"
-        echo "  已备份 $dst/$name → *.bak-substrate-*"
+        mkdir -p "$bdir"
+        cp -a "$dst/$name" "$bdir/$name"
+        echo "  已备份 $dst/$name → $bdir/$name"
       fi
     done
   fi
@@ -72,9 +74,13 @@ for f in notification.js check-memory-links.sh; do
   [ "$DRY" = 0 ] && chmod +x "$HOME/.claude/scripts/$f" 2>/dev/null || true
 done
 
+# 全局必读指令（目标已存在会先备份，请按需与原内容合并）
+[ -f "$REPO/agents/claude-code/CLAUDE.md" ] && backup_and_cp_file "$REPO/agents/claude-code/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+
 # ---------- 2. Codex：skills + hooks.json ----------
 backup_and_cp_dir "$REPO/agents/codex/skills" "$HOME/.codex/skills"
 backup_and_cp_file "$REPO/agents/codex/hooks.json" "$HOME/.codex/hooks.json"
+[ -f "$REPO/agents/codex/AGENTS.md" ] && backup_and_cp_file "$REPO/agents/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 
 # ---------- 3. OMP：配置（无密钥，原样可用） ----------
 mkdir -p "$HOME/.omp/agent"
@@ -128,3 +134,4 @@ echo "  1. 密钥/登录：见 docs/secrets-checklist.md（z.ai MCP token、Z_AI
 echo "  2. Claude 插件 marketplace：claude plugin marketplace + 重装官方插件（清单见 README）"
 echo "  3. glm-plan-*（@z_ai/coding-helper）插件：Windows npx 缓存路径已失效，需重新安装"
 echo "  4. Claude 通用记忆 memory/claude/：手动放置到目标项目 memory 目录，见 memory/README.md"
+echo "  5. stop-that-shit hook 强制模式（可选）：见 agents/vendor/stop-that-shit/INSTALL.md，经 plugin marketplace 安装并由本人确认 Hook 信任"
