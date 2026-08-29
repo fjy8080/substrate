@@ -7,13 +7,22 @@ modelRoles:
   smol: openai-codex/gpt-5.6-luna:xhigh
   amd_scout: zai/glm-5.3-flash:max
   amd_explorer: zai/glm-5.3-flash:max
-  amd_utility: zai/glm-5.3-flash:max
+  amd_developer: zai/glm-5.3-flash:max
   amd_knowledge: zai/glm-5.3-flash:max
+  amd_reviewer: zai/glm-5.3-flash:max
+  amd_utility: zai/glm-5.3-flash:max
 task:
   isolation:
     mode: auto
   maxConcurrency: 4
   enableLsp: true
+  agentModelOverrides:
+    task-scout: "@amd_scout"
+    explorer: "@amd_explorer"
+    developer: "@amd_developer"
+    knowledge-keeper: "@amd_knowledge"
+    reviewer: "@amd_reviewer"
+    utility: "@amd_utility"
 secrets:
   enabled: true
 bash:

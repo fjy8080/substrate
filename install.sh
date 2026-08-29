@@ -82,10 +82,11 @@ backup_and_cp_dir "$REPO/agents/codex/skills" "$HOME/.codex/skills"
 backup_and_cp_file "$REPO/agents/codex/hooks.json" "$HOME/.codex/hooks.json"
 [ -f "$REPO/agents/codex/AGENTS.md" ] && backup_and_cp_file "$REPO/agents/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 
-# ---------- 3. OMP：配置（无密钥，原样可用） ----------
+# ---------- 3. OMP：配置 + AMD agent 定义（无密钥，原样可用） ----------
 mkdir -p "$HOME/.omp/agent"
 backup_and_cp_file "$REPO/agents/omp/config.yml" "$HOME/.omp/agent/config.yml"
 backup_and_cp_file "$REPO/agents/omp/models.yml" "$HOME/.omp/agent/models.yml"
+backup_and_cp_dir "$REPO/agents/omp/agents" "$HOME/.omp/agent/agents"
 
 # ---------- 4. 可选：合并 MCP 到 ~/.claude.json ----------
 if [ "$MERGE_MCP" = 1 ]; then
