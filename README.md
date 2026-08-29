@@ -25,10 +25,6 @@
 | `github-pr-fix` | `/github-pr-fix` 或「修复#N」 | 验证并修复活跃 PR 上可行动的反馈，维护完整身份/生命周期台账，回复前先汇报 |
 | `agent-managed-delivery` | 仅显式 `/agent-managed-delivery` | 锁定 WBS 范围的多 agent 交付工作流：状态机（18 态）+ `workflowctl.py` 持久状态 + exact-HEAD/CI/审查 gate；绝不从普通开发请求推断触发 |
 
-### CCB 协作技能（需 CCB 环境）
-
-| `ask` / `ccb-clear` / `ccb-diagnose` | 对 CCB（Claude Code Bridge）受管 agent 的有界委派、任务边界处的上下文重置、agent/ provider 启动故障的只读诊断 |
-
 ### ★ 必读技能（全局指令强制加载，见下节）
 
 | `lean-mode`（节制工程） | [Timefiles404/lean-mode-skill](https://github.com/Timefiles404/lean-mode-skill)（MIT） | 防御性代码/校验/抽象的信任边界判据（校验只在四处信任边界做一次）；构建测试提速判据 |
@@ -78,7 +74,7 @@ bash install.sh --with-memory # 部署 codex 记忆到 ~/.codex/memories/
 substrate/
 ├── install.sh                 # 安装脚本（幂等，覆盖前备份，--dry-run 预演）
 ├── agents/
-│   ├── claude-code/           # skills/（11 个）+ CLAUDE.md（全局必读指令）+ settings.json
+│   ├── claude-code/           # skills/（8 个）+ CLAUDE.md（全局必读指令）+ settings.json
 │   │                          # + mcp-servers.json.tpl + scripts/（通知/记忆断链检查 hook 脚本）
 │   ├── codex/                 # skills/（8 个）+ AGENTS.md + hooks.json + config.toml 模板
 │   ├── omp/                   # OMP 配置示例（模型角色/任务并发/approval 模式）
