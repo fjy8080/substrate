@@ -99,6 +99,9 @@ substrate/
 
 ## License 与致谢
 
-- `agents/vendor/lean-mode-skill/` — MIT © Timefiles（原样保留）
-- `agents/vendor/stop-that-shit/` — MIT © Stop That Shit contributors（原样保留）
-- 其余内容（自建 skills、memory、docs、脚本）暂未附加开源许可，© HP26666；引用或复用前请先开 Issue 沟通。
+本项目以 [MIT License](LICENSE) 开源（© HP26666），覆盖自建 skills、memory、docs 与脚本。
+
+内置的第三方项目保留各自许可（原样存于对应目录）：
+
+- `agents/vendor/lean-mode-skill/` — MIT © Timefiles
+- `agents/vendor/stop-that-shit/` — MIT © Stop That Shit contributors
