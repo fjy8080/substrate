@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# substrate —— 多 agent 开发环境恢复脚本
+# substrate —— 多 agent 技能与记忆包安装脚本
 #
 # 用法：
 #   bash install.sh                 # 只装无损项：skills / 全局必读指令 / hook 脚本 / OMP 配置
@@ -131,7 +131,6 @@ fi
 echo
 echo "== 完成。剩余手动项 =="
 echo "  1. 密钥/登录：见 docs/secrets-checklist.md（z.ai MCP token、Z_AI_API_KEY、Codex 登录、OMP oauth）"
-echo "  2. Claude 插件 marketplace：claude plugin marketplace + 重装官方插件（清单见 README）"
-echo "  3. glm-plan-*（@z_ai/coding-helper）插件：Windows npx 缓存路径已失效，需重新安装"
+echo "  2. Claude 插件 marketplace：若用了 --with-config：settings.json 启用的官方插件需重新经 marketplace 安装"
 echo "  4. Claude 通用记忆 memory/claude/：手动放置到目标项目 memory 目录，见 memory/README.md"
 echo "  5. stop-that-shit hook 强制模式（可选）：见 agents/vendor/stop-that-shit/INSTALL.md，经 plugin marketplace 安装并由本人确认 Hook 信任"
