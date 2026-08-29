@@ -1,13 +1,3 @@
-# Codex 全局记忆（脱敏精选版）
-
-> 2026-08-30 从原机 `~/.codex/memories/MEMORY.md`（91KB / 19 个 Task Group）脱敏整理入库：
-> - 已移除全部项目交付快照（shenxue-ai / HXCQ-Sport / xingyan 等 16 个 Task Group）及其中的业务实现细节
-> - 已移除基础设施、服务器、代理工具链、本地系统操作与法律事务等敏感段落
-> - 用户主目录路径统一写为 `~`（通用表述，不绑定具体用户名）
->
-> 真正跨项目有价值的部分保留在 [memory_summary.md](memory_summary.md)（用户偏好 + 通用技巧）。
-> 原始完整版只保留在原机，不在本仓库维护。
-
 # Task Group: PDF answer highlighting
 
 scope: Highlight answers in supplied Chinese practice PDFs while preserving originals and accurately reporting partial completion.

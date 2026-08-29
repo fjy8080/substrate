@@ -1,6 +1,6 @@
 # 通用记忆包（memory/）
 
-跨项目沉淀的 agent 工作方法论，全部从真实项目实战中提炼，已脱敏。每条独立成文、frontmatter 标注 type（feedback / project / reference），可按需并入你自己的记忆体系。
+跨项目沉淀的 agent 工作方法论，全部从真实项目实战中提炼。每条独立成文、frontmatter 标注 type（feedback / project / reference），可按需并入你自己的记忆体系。
 
 ## claude/ —— 13 条跨项目方法论
 
@@ -22,9 +22,9 @@
 
 **使用方式**：放入目标项目的 memory 目录（Claude Code 的 auto-memory 按项目路径组织），并在该目录的 `MEMORY.md` 索引里补一行条目；环境类记忆放 home 级记忆目录可全局生效。文件间 `[[互链]]` 在本包内闭合。
 
-## codex/ —— Codex 记忆精选（脱敏版）
+## codex/ —— Codex 记忆
 
-- `MEMORY.md`：无敏感项的任务组示例（含 Codex 记忆文件的标准结构：scope / rollout 引用 / keywords / preferences / knowledge / failures）
+- `MEMORY.md`：任务组示例（含 Codex 记忆文件的标准结构：scope / rollout 引用 / keywords / preferences / knowledge / failures）
 - `memory_summary.md`：**精华** —— 10 条用户工作偏好（原话级：「直接问，不要自己猜」「先修 CI，再审查」「不要合并」等）+ 7 条通用交付技巧（exact-HEAD 证据链、未验证 gate 独立呈报、Flyway 全树扫描断言、批量 API 串行化等）
 - `extensions/ad_hoc/instructions.md`：ad-hoc 记忆扩展的机制说明
 

@@ -1,8 +1,5 @@
 v1
 
-> 脱敏版：原文件中的项目交付条目（What's in Memory）、代理工具链与基础设施相关技巧已移除；
-> 用户偏好（S10）与通用方法论技巧保留。路径统一写为 ~。
-
 ## User Profile
 
 The user works across multiple product projects and local Linux/KDE tooling workflows. They use Codex for tightly scoped delivery, live GitHub/CI/Project verification, evidence-backed planning, and durable local handoffs. They set explicit worktree, allowed-path, publication, and merge boundaries and expect them to be followed literally. They use zsh and sometimes run short terminal commands themselves.

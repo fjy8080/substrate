@@ -8,7 +8,7 @@
 两个核心资产，全部即取即用：
 
 1. **开发技能包（`agents/*/skills/`）** —— 围绕 GitHub 协作流程（Issue → 分支/worktree → PR → CI → 审查 → 合并 → 记忆沉淀）构建的一组 skill。每个 skill 都有明确的触发条件与权限边界（只读 / 显式授权后才写 / 三轮收敛后停），核心脚本自带测试。
-2. **通用记忆包（`memory/`）** —— 从多个真实项目沉淀的跨项目方法论：多 agent 并行开发纪律、Git 分支纪律、双工具单一真相源约定、GitHub API 硬规则、平台差异 workaround。已脱敏，可直接并入你自己的 agent 记忆体系。
+2. **通用记忆包（`memory/`）** —— 从多个真实项目沉淀的跨项目方法论：多 agent 并行开发纪律、Git 分支纪律、双工具单一真相源约定、GitHub API 硬规则、平台差异 workaround。可直接并入你自己的 agent 记忆体系。
 
 适用 agent：**Claude Code** 与 **Codex**（两边各一份、同源维护）；`agents/omp/` 附带 OMP 配置示例。
 
@@ -39,7 +39,7 @@
 - **双工具协作**：codex 与 claude code 并用的单一真相源原则、双端 skill 同步的占位符回译规则
 - **平台规则**：GitHub Projects API 硬规则（限流退避、单写队列、禁并发 mutation）、MCP 图像工具用法、subagent 模型约定
 
-`memory/codex/` —— Codex 记忆精选：10 条用户工作偏好（原话级）+ 7 条通用交付技巧（脱敏版，项目快照已移除）。
+`memory/codex/` —— Codex 记忆：10 条用户工作偏好（原话级）+ 7 条通用交付技巧。
 
 使用方式：按需把记忆文件放入目标项目的 memory 目录（或 home 级记忆），并在对应 `MEMORY.md` 索引补一行；详见 `memory/README.md`。
 
@@ -54,7 +54,7 @@ bash install.sh               # 安装：skills + 全局必读指令 + hook 脚�
 
 # 可选开关（可组合）：
 bash install.sh --merge-mcp   # 把 MCP 模板合并进 ~/.claude.json（需 jq；先填 <ZAI_*> 占位符）
-bash install.sh --with-config # 覆盖 ~/.claude/settings.json 与 ~/.codex/config.toml（脱敏模板）
+bash install.sh --with-config # 覆盖 ~/.claude/settings.json 与 ~/.codex/config.toml（模板）
 bash install.sh --with-memory # 部署 codex 记忆到 ~/.codex/memories/
 ```
 

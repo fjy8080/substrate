@@ -1,5 +1,5 @@
 {
-  "_comment": "Claude Code 全局 MCP 服务器模板（已脱敏）。恢复时不要直接覆盖 ~/.claude.json（它是含机器状态的大文件），用 install.sh 的 --merge-mcp 或手动 jq 合并 mcpServers 节点，并把 <ZAI_BEARER_TOKEN>/<ZAI_API_KEY> 替换为真实凭据（清单见 docs/secrets-checklist.md）。",
+  "_comment": "Claude Code 全局 MCP 服务器模板。填入 <ZAI_*> 凭据后用 install.sh --merge-mcp 合并进 ~/.claude.json（~/.claude.json 含机器状态，不要整文件覆盖）。",
   "mcpServers": {
     "web-reader": {
       "type": "http",

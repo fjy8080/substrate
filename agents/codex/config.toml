@@ -1,14 +1,9 @@
 # ============================================================
-# Codex CLI 全局配置（substrate 脱敏模板）
-# 恢复：复制到 ~/.codex/config.toml，替换 <...> 占位符（清单见 docs/secrets-checklist.md）
-#
-# 相对原机器 (~/.codex/config.toml) 的调整：
-#   - mcp_servers 中的 Bearer token / Z_AI_API_KEY → 占位符
-#   - 删除 13 个 Windows 路径的 [projects.'C:\...'] trust 残留（Linux 无效）
-#   - 删除 [hooks.state] 信任哈希（新机器首次运行会对 hooks.json 重新弹信任确认，属正常）
-#   - 删除 mcp_servers.node_repl 与 openai-bundled / openai-primary-runtime 的
-#     marketplace / plugin 条目（由 Codex 桌面端自动管理、自动重建）
-#   - auth.json 不入库：新机器需重新登录 Codex
+# Codex CLI 全局配置模板（substrate）
+# 用法：复制到 ~/.codex/config.toml，替换 <ZAI_*> 占位符（清单见
+# docs/secrets-checklist.md），按需启用 [projects] 信任目录（~ 换成实际绝对路径）。
+# - 凭据登录与 hooks.json 的 Hook 信任在首次运行时由 Codex 交互确认
+# - openai-bundled / openai-primary-runtime 插件与 node_repl MCP 由 Codex 桌面端自动管理
 # ============================================================
 
 model = "gpt-5.6-sol"
