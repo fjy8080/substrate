@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "autoMemoryEnabled": true,
+  "effort": "max",
+  "effortLevel": "max",
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "PROXY_MANAGED",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:15721",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5[1M]",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "Fable",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME": "Haiku",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1M]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "Opus",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1M]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "Sonnet",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "glm-5.3-flash[1M]",
+    "CLAUDE_CODE_USE_POWERSHELL_TOOL": "1",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "fallbackModel": [
+    "haiku"
+  ],
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "node \"$HOME/.claude/scripts/notification.js\" 2>/dev/null || true",
+            "timeout": 5000,
+            "type": "command"
+          }
+        ],
+        "matcher": "permission_prompt|idle_prompt"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE '\\.(ts|tsx|vue|java)$'; then npx prettier --write \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true; fi",
+            "timeout": 15000,
+            "type": "command"
+          }
+        ],
+        "matcher": "Edit|Write"
+      },
+      {
+        "hooks": [
+          {
+            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE 'db/migration/.*\\.sql$'; then jq -nc '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"⚠ 刚修改了 Flyway 迁移脚本。请确认本项目迁移的生效方式（打进 jar/镜像的迁移，仅重启容器无效，需重建镜像后再启动）。\"}}'; fi",
+            "timeout": 5000,
+            "type": "command"
+          }
+        ],
+        "matcher": "Edit|Write"
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "command": "jq -nc '{hookSpecificOutput: {hookEventName: \"PreCompact\", additionalContext: \"compaction 即将发生，请总结当前未完成任务的关键上下文。\"}}' 2>/dev/null || true",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && { echo '--- 当前分支 ---'; git branch --show-current 2>/dev/null || echo N/A; echo '--- 未提交变更 ---'; git status --short 2>/dev/null | head -15 || echo N/A; echo '--- 最近提交 ---'; git log --oneline -5 2>/dev/null || echo N/A; }",
+            "type": "command"
+          },
+          {
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; if [ ! -f CLAUDE.md ] && [ ! -f .claude/CLAUDE.md ]; then jq -nc '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:\"⚠ 此项目缺少 CLAUDE.md 项目记忆文件。请主动提出为项目创建 CLAUDE.md，内容包括：构建/运行命令、技术栈、架构约束、代码规范、关键约定。同时建议创建 .claude/settings.json 配置项目级权限。\"}}'; elif [ -f CLAUDE.md ]; then MTIME=$(stat -c %Y CLAUDE.md 2>/dev/null || echo 0); NOW=$(date +%s); DAYS=$(( (NOW - MTIME) / 86400 )); if [ \"$DAYS\" -gt 7 ]; then jq -nc --arg d \"$DAYS\" '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"CLAUDE.md 已有 \\($d) 天未更新，可询问用户是否需要刷新项目记忆。\")}}'; fi; fi",
+            "type": "command"
+          },
+          {
+            "command": "bash \"$HOME/.claude/scripts/check-memory-links.sh\" 2>/dev/null || true",
+            "timeout": 5000,
+            "type": "command"
+          }
+        ],
+        "matcher": "startup|resume"
+      }
+    ]
+  },
+  "language": "chinese",
+  "model": "opus[1m]",
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(mvn *)",
+      "Bash(java *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(find *)",
+      "Bash(wc *)",
+      "Bash(date *)",
+      "Bash(npx *)"
+    ],
+    "defaultMode": "auto",
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/.ssh/**)",
+      "Read(**/credentials*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Bash(rm -rf / )",
+      "Bash(git push --force *)",
+      "Bash(curl *)",
+      "Bash(sudo *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git reset --hard *)",
+      "Bash(docker volume rm *)"
+    ]
+  },
+  "skipWorkflowUsageWarning": true,
+  "verbose": true
+}

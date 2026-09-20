@@ -1,0 +1,11 @@
+{
+  "id": "STS-S-003-B",
+  "kind": "bad",
+  "family": "S",
+  "title": "Write outside the declared file boundary",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "allowedPaths": ["src/config.cjs"] },
+    "action": { "mutability": "write", "duplicate": false, "affectedPaths": ["README.md"] }
+  },
+  "expected": { "outcome": "deny_and_explain", "family": "S", "reasonCode": "PATH_OUTSIDE_CONTRACT" }
+}

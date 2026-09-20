@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE '\\.(ts|tsx|vue|java)$'; then npx prettier --write \"$CLAUDE_TOOL_INPUT_FILE_PATH\" 2>/dev/null || true; fi",
+            "timeout": 15000
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT_FILE_PATH\" | grep -qE 'db/migration/.*\\.sql$'; then jq -nc '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"⚠ 刚修改了 Flyway 迁移脚本。请确认本项目迁移的生效方式（打进 jar/镜像的迁移，仅重启容器无效，需重建镜像后再启动）。\"}}'; fi",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -nc '{hookSpecificOutput: {hookEventName: \"PreCompact\", additionalContext: \"compaction 即将发生，请总结当前未完成任务的关键上下文。\"}}' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && { echo '--- 当前分支 ---'; git branch --show-current 2>/dev/null || echo N/A; echo '--- 未提交变更 ---'; git status --short 2>/dev/null | head -15 || echo N/A; echo '--- 最近提交 ---'; git log --oneline -5 2>/dev/null || echo N/A; }"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; if [ ! -f CLAUDE.md ] && [ ! -f .claude/CLAUDE.md ]; then jq -nc '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:\"⚠ 此项目缺少 CLAUDE.md 项目记忆文件。请主动提出为项目创建 CLAUDE.md，内容包括：构建/运行命令、技术栈、架构约束、代码规范、关键约定。同时建议创建 .claude/settings.json 配置项目级权限。\"}}'; elif [ -f CLAUDE.md ]; then MTIME=$(stat -c %Y CLAUDE.md 2>/dev/null || echo 0); NOW=$(date +%s); DAYS=$(( (NOW - MTIME) / 86400 )); if [ \"$DAYS\" -gt 7 ]; then jq -nc --arg d \"$DAYS\" '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"CLAUDE.md 已有 \\($d) 天未更新，可询问用户是否需要刷新项目记忆。\")}}'; fi; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+# ============================================================
+# Codex CLI 全局配置模板（substrate）
+# 用法：复制到 ~/.codex/config.toml，替换 <ZAI_*> 占位符（清单见
+# docs/secrets-checklist.md），按需启用 [projects] 信任目录（~ 换成实际绝对路径）。
+# - 凭据登录与 hooks.json 的 Hook 信任在首次运行时由 Codex 交互确认
+# - openai-bundled / openai-primary-runtime 插件与 node_repl MCP 由 Codex 桌面端自动管理
+# ============================================================
+
+model = "gpt-5.6-sol"
+model_reasoning_effort = "low"
+service_tier = "ultrafast"
+approvals_reviewer = "user"
+
+[model_providers.openai_http]
+name = "OpenAI HTTP only"
+wire_api = "responses"
+supports_websockets = false
+
+# 仅 Windows 生效；Linux/macOS 机器可忽略
+[windows]
+sandbox = "unelevated"
+model_provider = "openai_http"
+
+# 受信任的项目目录：取消注释、把 ~ 替换为新机器实际绝对路径后启用（不配置则首次打开项目时交互确认）
+# [projects."~/Desktop/project"]
+# trust_level = "trusted"
+
+
+# [projects."~"]
+# trust_level = "trusted"
+
+
+
+
+
+[marketplaces.claude-plugins-official]
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[plugins."clangd-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."code-review@claude-plugins-official"]
+enabled = true
+
+[plugins."commit-commands@claude-plugins-official"]
+enabled = true
+
+[plugins."context7@claude-plugins-official"]
+enabled = true
+
+[plugins."feature-dev@claude-plugins-official"]
+enabled = true
+
+[plugins."frontend-design@claude-plugins-official"]
+enabled = true
+
+[plugins."jdtls-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."pyright-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."security-guidance@claude-plugins-official"]
+enabled = true
+
+[plugins."typescript-lsp@claude-plugins-official"]
+enabled = true
+
+[desktop]
+followUpQueueMode = "queue"
+conversationDetailMode = "STEPS_PROSE"
+enabled-reasoning-efforts = [
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "ultra",
+    "max",
+]
+external-agent-import-sync-enabled = true
+preventSleepWhileRunning = true
+show-context-window-usage = true
+
+[features]
+js_repl = false
+memories = true
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+ANTHROPIC_AUTH_TOKEN = "PROXY_MANAGED"
+ANTHROPIC_BASE_URL = "http://127.0.0.1:15721"
+ANTHROPIC_DEFAULT_FABLE_MODEL = "claude-fable-5[1M]"
+ANTHROPIC_DEFAULT_FABLE_MODEL_NAME = "Fable"
+ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5"
+ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME = "Haiku"
+ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-8[1M]"
+ANTHROPIC_DEFAULT_OPUS_MODEL_NAME = "Opus"
+ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-6"
+ANTHROPIC_DEFAULT_SONNET_MODEL_NAME = "Sonnet"
+API_TIMEOUT_MS = "3000000"
+CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
+CLAUDE_CODE_EFFORT_LEVEL = "max"
+CLAUDE_CODE_USE_POWERSHELL_TOOL = "1"
+ENABLE_TOOL_SEARCH = "true"
+CLAUDE_CODE_SUBAGENT_MODEL = "glm-5.3-flash[1M]"
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 2
+
+# ---------- MCP 服务器（z.ai 系，凭据占位） ----------
+
+[mcp_servers.web-reader]
+url = "https://api.z.ai/api/mcp/web_reader/mcp"
+
+[mcp_servers.web-reader.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[mcp_servers.web-search-prime]
+url = "https://api.z.ai/api/mcp/web_search_prime/mcp"
+
+[mcp_servers.web-search-prime.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[mcp_servers.zai-mcp-server]
+command = "npx"
+args = [
+    "-y",
+    "@z_ai/mcp-server",
+]
+
+[mcp_servers.zai-mcp-server.env]
+Z_AI_MODE = "ZHIPU"
+Z_AI_API_KEY = "<ZAI_API_KEY>"
+
+[mcp_servers.zread]
+url = "https://api.z.ai/api/mcp/zread/mcp"
+
+[mcp_servers.zread.http_headers]
+Authorization = "Bearer <ZAI_BEARER_TOKEN>"
+
+[memories]
+generate_memories = true
+use_memories = true

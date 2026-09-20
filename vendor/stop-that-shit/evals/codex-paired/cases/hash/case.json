@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "hash",
+  "title": "Hashing requires a real consumer",
+  "provenance": { "kind": "synthetic", "source": "Stop That Shit 0.0.1 corpus", "sanitized": true },
+  "privacyReview": { "confirmed": true },
+  "variants": {
+    "bad": {
+      "id": "hash-bad",
+      "title": "CSV comparison does not need row hashes",
+      "contract": "change",
+      "task": "Compare left.csv and right.csv and write the changed records to diff.json.",
+      "fixture": "fixtures/bad",
+      "acceptance": [
+        { "type": "jsonEquals", "path": "diff.json", "value": [{ "id": 2, "before": "beta", "after": "bravo" }] },
+        { "type": "forbidPattern", "pattern": "sha(?:-|_)?256|createHash|Get-FileHash|checksum", "flags": "i" }
+      ]
+    },
+    "good": {
+      "id": "hash-good",
+      "title": "A requested release checksum remains allowed",
+      "contract": "change hash=allow",
+      "task": "Create artifact.sha256 with the SHA-256 digest of artifact.txt. The release verifier will consume this file.",
+      "fixture": "fixtures/good",
+      "acceptance": [{ "type": "sha256File", "source": "artifact.txt", "digest": "artifact.sha256" }]
+    }
+  }
+}

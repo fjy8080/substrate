@@ -1,0 +1,11 @@
+{
+  "id": "STS-S-003-G",
+  "kind": "good",
+  "family": "S",
+  "title": "Write inside the declared file boundary",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "allowedPaths": ["src/config.cjs"] },
+    "action": { "mutability": "write", "duplicate": false, "affectedPaths": ["src/config.cjs"] }
+  },
+  "expected": { "outcome": "allow", "family": null, "reasonCode": "WITHIN_CONTRACT" }
+}

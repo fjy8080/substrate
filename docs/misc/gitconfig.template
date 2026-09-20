@@ -1,0 +1,14 @@
+# ~/.gitconfig 模板（GitHub 凭据走 gh CLI）
+# 若 gh 不在 PATH，也可改用 gh 二进制的绝对路径；
+# gh 在 PATH 中时可用下面的 !gh 写法，更可移植。
+
+[user]
+	name = <YOUR_NAME>          # 你的 Git 用户名（与你的 GitHub 账号一致即可）
+	email = <YOUR_EMAIL>        # 建议填 GitHub 的 noreply 邮箱，避免在提交历史里暴露真实邮箱
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential

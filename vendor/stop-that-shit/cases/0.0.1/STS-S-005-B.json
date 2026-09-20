@@ -1,0 +1,11 @@
+{
+  "id": "STS-S-005-B",
+  "kind": "bad",
+  "family": "S",
+  "title": "Dependency added for a trivial operation",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "dependencyPolicy": "deny" },
+    "action": { "mutability": "write", "duplicate": false, "dependencyIntent": true }
+  },
+  "expected": { "outcome": "deny_and_explain", "family": "S", "reasonCode": "DEPENDENCY_NOT_AUTHORIZED" }
+}

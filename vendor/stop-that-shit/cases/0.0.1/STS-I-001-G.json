@@ -1,0 +1,11 @@
+{
+  "id": "STS-I-001-G",
+  "kind": "good",
+  "family": "I",
+  "title": "Explicit fix authorization",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "agentBudget": 0, "agentsUsed": 0 },
+    "action": { "mutability": "write", "duplicate": false }
+  },
+  "expected": { "outcome": "allow", "family": null, "reasonCode": "WITHIN_CONTRACT" }
+}

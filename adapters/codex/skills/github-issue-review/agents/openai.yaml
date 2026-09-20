@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub Issue Review"
+  short_description: "只读批量审查Issue，输出分级、归属、真伪、重复与契约影响"
+  default_prompt: "Use $github-issue-review to triage these Issues: classify truth, severity, WBS ownership, contract impact and duplicates, then present a per-Issue table and cross-Issue map for confirmation before publishing any comment."
+policy:
+  allow_implicit_invocation: false

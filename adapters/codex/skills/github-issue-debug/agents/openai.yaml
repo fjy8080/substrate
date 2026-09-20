@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub Issue Debug"
+  short_description: "按分级、任务边界和契约门禁隔离修复Issue"
+  default_prompt: "Use $github-issue-debug to investigate these Issues, classify severity and ownership, lock each approved scope, and create separate develop PRs with verified body metadata."
+policy:
+  allow_implicit_invocation: false

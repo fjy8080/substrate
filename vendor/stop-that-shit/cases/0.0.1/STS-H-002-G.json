@@ -1,0 +1,17 @@
+{
+  "id": "STS-H-002-G",
+  "kind": "good",
+  "family": "H",
+  "title": "Release checksum explicitly authorized",
+  "input": {
+    "contract": { "mode": "change", "level": "guard", "agentBudget": 0, "agentsUsed": 0, "hashPolicy": "allow" },
+    "action": {
+      "mutability": "write",
+      "duplicate": false,
+      "hashIntent": true,
+      "consumer": "release integrity verification",
+      "changesNextAction": "reject a downloaded artifact when its digest differs"
+    }
+  },
+  "expected": { "outcome": "allow", "family": null, "reasonCode": "WITHIN_CONTRACT" }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "STS-I-001-B",
+  "kind": "bad",
+  "family": "I",
+  "title": "Review becomes implementation",
+  "input": {
+    "contract": { "mode": "review", "level": "guard", "agentBudget": 0, "agentsUsed": 0 },
+    "action": { "mutability": "write", "duplicate": false }
+  },
+  "expected": { "outcome": "deny_and_explain", "family": "I", "reasonCode": "MODE_FORBIDS_MUTATION" }
+}

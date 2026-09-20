@@ -1,0 +1,20 @@
+# Project instructions for Claude Code
+
+## Safety
+
+- Do not modify `.env`, credentials, generated runtime state, or production data.
+- Do not commit, push, open/merge PRs, deploy, or call external write APIs without explicit user authorization.
+- Before a database change, follow this project's migration process and run the required verification.
+
+## Collaboration
+
+- In the CCB workflow, `developer` is the sole code writer.
+- `task_scout`, `explorer`, `utility`, and `reviewer` are read-only.
+- Report findings / changes / verification / blockers / risks concisely.
+
+## Project facts to fill in
+
+- Build commands: `<FILL_ME>`
+- Test commands: `<FILL_ME>`
+- Branch strategy: `<FILL_ME>`
+- Architecture and API constraints: `<FILL_ME>`

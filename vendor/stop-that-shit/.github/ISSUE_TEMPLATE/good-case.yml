@@ -1,0 +1,48 @@
+name: Good Case
+description: Report necessary work that a guard must allow.
+title: "[Good Case] "
+labels: ["case:good"]
+body:
+  - type: markdown
+    attributes:
+      value: Good Cases prevent broad rules from stopping legitimate work.
+  - type: textarea
+    id: request
+    attributes:
+      label: Sanitized request and task mode
+    validations:
+      required: true
+  - type: textarea
+    id: action
+    attributes:
+      label: One material Codex action that must proceed
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Decisive fact that makes the action necessary
+    validations:
+      required: true
+  - type: textarea
+    id: pair
+    attributes:
+      label: Nearest Bad Case or changed fact
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Codex surface, version, model, reasoning, and plugin revision (optional)
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal public reproduction (optional)
+      description: Add a sanitized repository, fixture, exact task, or acceptance test if it is safe to share. This is required before the case can support a non-regression claim.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: I sanitized private and identifying information.
+          required: true

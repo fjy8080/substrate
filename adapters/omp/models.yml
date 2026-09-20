@@ -1,0 +1,23 @@
+providers:
+  zai:
+    baseUrl: https://api.z.ai/api/anthropic
+    api: anthropic-messages
+    auth: oauth
+    models:
+      - id: glm-5.3-flash
+        name: GLM-5.3-Flash
+        baseUrl: https://api.z.ai/api/coding/paas/v4
+        api: openai-completions
+        reasoning: true
+        input: [text, image]
+        contextWindow: 1000000
+        maxTokens: 131072
+        thinking:
+          mode: effort
+          efforts: [low, high, max]
+          defaultLevel: max
+          requiresEffort: true
+        compat:
+          supportsReasoningEffort: true
+          thinkingFormat: zai
+          supportsForcedToolChoice: true

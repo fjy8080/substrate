@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub PR Review"
+  short_description: "核实PR身份、任务边界和分级，三轮后只以P0/P1阻塞"
+  default_prompt: "Use $github-pr-review to review PR #123, separate PR identity from independence, lock task scope, apply severity convergence, and wait for the user's confirmation before publishing."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.log
+node_modules/
+
+*.key
+secrets/**
+.env
+.env.*
+.zcode/
